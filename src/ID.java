@@ -6,8 +6,6 @@ public enum ID {
     Player3(),
     Player4(),
     Block(),
-    Create(),
-    Bullet(),
-    Enemy();
+    Bullet()
 
 }

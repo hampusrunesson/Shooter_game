@@ -4,20 +4,25 @@ import java.util.Timer;
 
 public class KeyInput extends KeyAdapter {
 
-    Driver driver;
-    SpriteSheet spriteS;
-    Timer t1 = new Timer();
+    private Driver driver;
+    private SpriteSheet spriteS;
+    private int reloadTime;
+    private Game game;
 
-    public KeyInput(Driver driver, SpriteSheet spriteS)
+
+    public KeyInput(Driver driver, SpriteSheet spriteS, Game game, int reloadTime)
     {
         this.driver = driver;
         this.spriteS = spriteS;
+        this.reloadTime = reloadTime;
+        this.game = game;
 
     }
 
     public void keyPressed(KeyEvent e)
     {
         int key = e.getKeyCode();
+
 
 
         for(int i = 0; i < driver.object.size(); i++)
@@ -33,9 +38,9 @@ public class KeyInput extends KeyAdapter {
                 if(key == KeyEvent.VK_S) tempObject.setVely(3);
                 if(key == KeyEvent.VK_D) tempObject.setVelx(3);
                 if(key == KeyEvent.VK_A) tempObject.setVelx(-3);
-                if(key == KeyEvent.VK_SPACE)
+                if(key == KeyEvent.VK_SPACE && game.getT1() > reloadTime)
                 {
-
+                    game.setT1(0);
 
                     int bx = 5;
                     int by = 5;
@@ -50,13 +55,15 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player2)
             {//key event for player 1
-                if(key == KeyEvent.VK_UP) tempObject.setVely(-5);
-                if(key == KeyEvent.VK_DOWN) tempObject.setVely(5);
-                if(key == KeyEvent.VK_RIGHT) tempObject.setVelx(5);
-                if(key == KeyEvent.VK_LEFT) tempObject.setVelx(-5);
+                if(key == KeyEvent.VK_UP) tempObject.setVely(-3);
+                if(key == KeyEvent.VK_DOWN) tempObject.setVely(3);
+                if(key == KeyEvent.VK_RIGHT) tempObject.setVelx(3);
+                if(key == KeyEvent.VK_LEFT) tempObject.setVelx(-3);
 
-                if(key == KeyEvent.VK_NUMPAD0)
+                if(key == KeyEvent.VK_NUMPAD0 && game.getT2() > reloadTime)
                 {
+                    game.setT2(0);
+
                     int bx = 5;
                     int by = 5;
                     if(tempObject.getTempvelx() > 0) bx = 30;
@@ -69,12 +76,14 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player3)
             {//key event for player 1
-                if(key == KeyEvent.VK_T) tempObject.setVely(-5);
-                if(key == KeyEvent.VK_G) tempObject.setVely(5);
-                if(key == KeyEvent.VK_H) tempObject.setVelx(5);
-                if(key == KeyEvent.VK_F) tempObject.setVelx(-5);
-                if(key == KeyEvent.VK_V)
+                if(key == KeyEvent.VK_T) tempObject.setVely(-3);
+                if(key == KeyEvent.VK_G) tempObject.setVely(3);
+                if(key == KeyEvent.VK_H) tempObject.setVelx(3);
+                if(key == KeyEvent.VK_F) tempObject.setVelx(-3);
+                if(key == KeyEvent.VK_V && game.getT3() > reloadTime)
                 {
+                    game.setT3(0);
+
                     int bx = 5;
                     int by = 5;
                     if(tempObject.getTempvelx() > 0) bx = 30;
@@ -88,12 +97,14 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player4)
             {//key event for player 1
-                if(key == KeyEvent.VK_I) tempObject.setVely(-5);
-                if(key == KeyEvent.VK_K) tempObject.setVely(5);
-                if(key == KeyEvent.VK_L) tempObject.setVelx(5);
-                if(key == KeyEvent.VK_J) tempObject.setVelx(-5);
-                if(key == KeyEvent.VK_N)
+                if(key == KeyEvent.VK_I) tempObject.setVely(-3);
+                if(key == KeyEvent.VK_K) tempObject.setVely(3);
+                if(key == KeyEvent.VK_L) tempObject.setVelx(3);
+                if(key == KeyEvent.VK_J) tempObject.setVelx(-3);
+                if(key == KeyEvent.VK_N && game.getT4() > reloadTime)
                 {
+                    game.setT4(0);
+
                     int bx = 5;
                     int by = 5;
                     if(tempObject.getTempvelx() > 0) bx = 30;

@@ -34,6 +34,7 @@ public class Game extends Canvas implements Runnable
     private ArrayList<String> names;
     public int playersLeft;
 
+    private int reloadTime = 25, t1 = 25, t2 = 25, t3 = 25, t4 = 25;
 
 
 
@@ -46,7 +47,7 @@ public class Game extends Canvas implements Runnable
         start();
         driver = new Driver();
         ImageLoader loader = new ImageLoader();
-        this.addKeyListener(new KeyInput(driver, spriteS));
+        this.addKeyListener(new KeyInput(driver, spriteS, this, reloadTime));
         menu = new Menu(this, driver, loader);
         this.addMouseListener(menu);
         cfg = new ConfigMenu(this);
@@ -125,6 +126,17 @@ public class Game extends Canvas implements Runnable
 
         if(gamestate == STATE.Game)
         {
+
+            if(t1 <= reloadTime) {
+                t1++;
+            }
+            if(t2 <= reloadTime)
+                t2++;
+            if(t3 <= reloadTime)
+                t3++;
+            if(t4 <= reloadTime)
+                t4++;
+
             if(playersLeft == 1)
             {
                 playersLeft -= 1;
@@ -243,6 +255,38 @@ public class Game extends Canvas implements Runnable
 
             }
         }
+    }
+
+    public int getT1() {
+        return t1;
+    }
+
+    public void setT1(int t1) {
+        this.t1 = t1;
+    }
+
+    public int getT2() {
+        return t2;
+    }
+
+    public void setT2(int t2) {
+        this.t2 = t2;
+    }
+
+    public int getT3() {
+        return t3;
+    }
+
+    public void setT3(int t3) {
+        this.t3 = t3;
+    }
+
+    public int getT4() {
+        return t4;
+    }
+
+    public void setT4(int t4) {
+        this.t4 = t4;
     }
 
     public static void main(String[] args)

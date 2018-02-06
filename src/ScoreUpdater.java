@@ -1,6 +1,8 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -81,7 +83,6 @@ public class ScoreUpdater {
             while ((line = br.readLine()) != null)
             {
                 if(line.toString().matches(containsNumber)) {
-                    System.out.println(line.toString());
                     String[] splittedLine = line.split(regex);
                     tempResult.add(splittedLine);
                 }
@@ -100,6 +101,7 @@ public class ScoreUpdater {
         Iterator itDeaths = deaths.entrySet().iterator();
         Boolean exist = false;
 
+
         while(itKills.hasNext())
         {
             HashMap.Entry pairK = (HashMap.Entry)itKills.next();
@@ -113,14 +115,17 @@ public class ScoreUpdater {
 
                     e[1] = Integer.toString((int) pairK.getValue() + Integer.parseInt(e[1]));
                     e[2] = Integer.toString((int) pairD.getValue() + Integer.parseInt(e[2]));
-                    e[3] = Integer.toString(Integer.parseInt(e[1])/Math.max(1,Integer.parseInt(e[2])));
+
+                    double kd = Double.parseDouble(e[1])/Math.max(1,Double.parseDouble(e[2]));
+
+                    e[3] = Double.toString(Math.round(kd * 1000d) / 1000d);
+                    System.out.println(e[3]);
                     exist = true;
                 }
                 }
                 if(exist == false)
                 {
-                    int kd = (int) pairK.getValue()/Math.max(1, (int)pairD.getValue());
-                    String[] tempArray = {pairK.getKey().toString(), pairK.getValue().toString(), pairD.getValue().toString(), Integer.toString(kd)};
+                    String[] tempArray = {pairK.getKey().toString(), pairK.getValue().toString(), pairD.getValue().toString(),pairK.getValue().toString()};
                     System.out.println(tempArray);
                     currentScore.add(tempArray);
                 }
