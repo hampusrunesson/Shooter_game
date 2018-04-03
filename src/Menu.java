@@ -75,28 +75,26 @@ public class Menu extends MouseAdapter
     public void render(Graphics g)
     {
 
-        Font ft = new Font("chalkduster", 1, 50);
-        Font ft2 = new Font("chalkduster", 1, 50);
+        Font ft = new Font("Comic Sans MS", 1, 50);
 
-        FontMetrics metrics1 = g.getFontMetrics(ft);
-        int x = 
-        /*g.setFont(ft);
+
+        g.setFont(ft);
         g.setColor(Color.BLUE);
         g.drawString("Menu", 430, 80);
 
         g.setColor(Color.RED);
-        g.setFont(ft2);
+
         g.drawRect(325, 100, 350, 84);
         g.drawString("2 PLAYERS", 350, 160);
 
         g.setColor(Color.RED);
-        g.setFont(ft2);
+
         g.drawRect(325, 250, 350, 84);
         g.drawString("3 PLAYERS", 350, 310);
 
         g.setColor(Color.RED);
-        g.setFont(ft2);
+
         g.drawRect(325, 400, 350, 84);
-        g.drawString("4 PLAYERS", 350, 460);*/
+        g.drawString("4 PLAYERS", 350, 460);
     }
 }

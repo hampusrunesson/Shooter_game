@@ -42,9 +42,8 @@ public class ConfigMenu extends MouseAdapter{
     }
 
         public void render(Graphics g) {
-            Font ft = new Font("chalkduster", 1, 50);
-            Font ft2 = new Font("chalkduster", 1, 30);
-
+            Font ft = new Font("Comic Sans MS", 1, 50);
+            Font ft2 = new Font("Comic Sans MS", 1, 32);
 
 
             g.setFont(ft);
@@ -62,13 +61,14 @@ public class ConfigMenu extends MouseAdapter{
 
             for (int i = 0; i < players; i++) {
                 g.setColor(Color.RED);
-                g.drawString("Player " + (i + 1) + " ID:", 100, (i * 100) + 200);
+                g.drawString("Player " + (i + 1) + " ID:", 100, (i * 75) + 200);
 
 
                 if(names.size() > i)
                 {
                     g.setColor(Color.BLUE);
-                    g.drawString(names.get(i), 300, (i * 100) + 200);
+                    g.drawString(names.get(i), 320, (i * 75) + 200);
+
                 }
                 counter ++;
             }
