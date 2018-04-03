@@ -16,7 +16,8 @@ public class Window {
 
 
 
-        frame.add(game);
+        frame.getContentPane().add(game);
+        frame.pack();
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

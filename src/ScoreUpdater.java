@@ -1,8 +1,6 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.*;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -117,9 +115,8 @@ public class ScoreUpdater {
                     e[2] = Integer.toString((int) pairD.getValue() + Integer.parseInt(e[2]));
 
                     double kd = Double.parseDouble(e[1])/Math.max(1,Double.parseDouble(e[2]));
-
                     e[3] = Double.toString(Math.round(kd * 1000d) / 1000d);
-                    System.out.println(e[3]);
+
                     exist = true;
                 }
                 }

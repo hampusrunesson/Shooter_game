@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -79,7 +77,10 @@ public class Menu extends MouseAdapter
 
         Font ft = new Font("chalkduster", 1, 50);
         Font ft2 = new Font("chalkduster", 1, 50);
-        g.setFont(ft);
+
+        FontMetrics metrics1 = g.getFontMetrics(ft);
+        int x = 
+        /*g.setFont(ft);
         g.setColor(Color.BLUE);
         g.drawString("Menu", 430, 80);
 
@@ -96,6 +97,6 @@ public class Menu extends MouseAdapter
         g.setColor(Color.RED);
         g.setFont(ft2);
         g.drawRect(325, 400, 350, 84);
-        g.drawString("4 PLAYERS", 350, 460);
+        g.drawString("4 PLAYERS", 350, 460);*/
     }
 }
