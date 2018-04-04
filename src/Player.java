@@ -34,13 +34,6 @@ public class Player extends GameObject {
 
     public void tick()
     {
-        /*if(hp == 0)
-        {
-            //gamefeed
-
-
-            driver.removeObject(this);
-        }*/
 
         if(velx != 0 || vely != 0)
         {
@@ -97,9 +90,10 @@ public class Player extends GameObject {
     {
         //player rendering
         //g.drawImage(playerimage[0], x, y, null);
+        g.setColor(color);
         g.fillRect(x,y,20,20);
 
-        int px = 15 + 275*numberofplayers;
+        int px = 15 + 260*numberofplayers;
 
         g.setColor(Color.gray);
         g.fillRect(px, 565, 200, 32);

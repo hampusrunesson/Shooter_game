@@ -14,6 +14,7 @@ public class ConfigMenu extends MouseAdapter{
         private int counter = 0;
 
 
+
     public ConfigMenu(Game game)
        {
            this.game = game;
@@ -27,8 +28,11 @@ public class ConfigMenu extends MouseAdapter{
 
         if(MouseOver(mx, my, 460, 500, 100, 50))
         {
-            game.gamestate = STATE.Game;
-            game.loadMap(game.map);
+            if (names.size() == players)
+            {
+                game.gamestate = STATE.Game;
+                game.loadMap(game.map);
+            }
         }
     }
 
@@ -78,7 +82,7 @@ public class ConfigMenu extends MouseAdapter{
 
                     System.out.println("Player " + (x + 1) + " type in your username :");
                     String tempName = input.nextLine();
-
+                    System.out.println(tempName);
                     names.add(tempName);
                 }
             }

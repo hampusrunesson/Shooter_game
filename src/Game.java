@@ -215,8 +215,7 @@ public class Game extends Canvas implements Runnable
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
                 int white = (pixel) & 0xff;
-                int yellow = (pixel >> 16) & 0xff;
-
+                int yellow = (pixel >> 8) & 0xff;
 
                 if(red == 249)
                     driver.addObject(new Block(xx*16, yy*16, ID.Block, spriteS));
@@ -249,6 +248,7 @@ public class Game extends Canvas implements Runnable
                     driver.addObject(new Player(xx * 16, yy * 16, ID.Player4, driver, Color.yellow, spriteS, 3, names.get(3), this));
                     killResults.put(names.get(3), 0);
                     deathResults.put(names.get(3), 0);
+
 
 
                 }

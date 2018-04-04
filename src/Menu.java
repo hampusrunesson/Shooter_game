@@ -36,14 +36,14 @@ public class Menu extends MouseAdapter
         if(MouseOver(mx, my, 325, 250, 350, 84))
         {
             game.gamestate = STATE.ConfigMenu;
-            game.map = loader.loadimage("map/map2pl.png");
+            game.map = loader.loadimage("map/map3pl.png");
             game.cfg.players = 3;
 
         }
         if(MouseOver(mx, my, 325, 400, 350, 84))
         {
             game.gamestate = STATE.ConfigMenu;
-            game.map = loader.loadimage("map/map2pl.png");
+            game.map = loader.loadimage("map/map4pl.png");
             game.cfg.players = 4;
         }
 
