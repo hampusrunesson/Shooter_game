@@ -4,6 +4,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class creates the menu where the players enter there names
+ */
 public class ConfigMenu extends MouseAdapter{
 
         private int nPlayers;
@@ -13,14 +16,20 @@ public class ConfigMenu extends MouseAdapter{
         private ArrayList<String> names = new ArrayList<>();
         private int counter = 0;
 
-
-
+    /**
+     * The constructor of the class
+     * @param game is the current game
+     */
     public ConfigMenu(Game game)
        {
            this.game = game;
 
        }
 
+    /**
+     * Locate the mouse on the frame and checks if the player want to continue
+     * @param e is the event (if the mouse is pressed)
+     */
     public void mousePressed(MouseEvent e)
     {
         int mx = e.getX();
@@ -36,7 +45,16 @@ public class ConfigMenu extends MouseAdapter{
         }
     }
 
-
+    /**
+     *
+     * @param mx the current horizontal location of the mouse pointer
+     * @param my the current vertical location of the mouse pointer
+     * @param x the horizontal location where something can be pressed with the mouse pointer
+     * @param y the vertical location where something can be pressed with the mouse pointer
+     * @param width the width of the object that can be pressed
+     * @param hight the hight of the object that can be pressed
+     * @return true if the mouse is over a location that can be pressed, else it returns false
+     */
     private boolean MouseOver(int mx, int my, int x, int y, int width, int hight) {
         if (mx > x && mx < x + width) {
             if (my > y && my < y + hight) {
@@ -45,6 +63,10 @@ public class ConfigMenu extends MouseAdapter{
         } else return false;
     }
 
+    /**
+     * Draws the menu
+     * @param g is the graphics
+     */
         public void render(Graphics g) {
             Font ft = new Font("Comic Sans MS", 1, 50);
             Font ft2 = new Font("Comic Sans MS", 1, 32);

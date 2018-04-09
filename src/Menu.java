@@ -3,13 +3,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
+/**
+ *This class creates a menu and are launching the correct map,
+ * depending how many players that are playing
+ */
 public class Menu extends MouseAdapter
 {
     private Game game;
     private Driver driver;
     private ImageLoader loader;
 
-
+    /**
+     * The constructor
+     *
+     * @param game is the active game instance
+     * @param driver is the active driver instance
+     * @param loader is the class that loads the correct map
+     */
     public Menu(Game game, Driver driver, ImageLoader loader)
     {
         this.game = game;
@@ -18,6 +28,10 @@ public class Menu extends MouseAdapter
 
     }
 
+    /**
+     * This method checks if the mouse is pressed at a valid location
+     * @param e is the MouseEvent
+     */
     public void mousePressed(MouseEvent e)
     {
         int mx = e.getX();
@@ -49,11 +63,23 @@ public class Menu extends MouseAdapter
 
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    /**
+     * Not using this
+     * @param e
+     */
+    public void mouseReleased(MouseEvent e) {}
 
-    }
-
+    /**
+     * The method checks if the mouse is pressed over a valid location
+     *
+     * @param mx is horizontal position of mouse pointer
+     * @param my is vertical position of mouse pointer
+     * @param x is a valid horizontal location to press on
+     * @param y is a valid vertical location to press on
+     * @param width is the width of the valid location
+     * @param hight is the hight of the valid location
+     * @return true or false whether the the location is valid or not
+     */
     private boolean MouseOver(int mx, int my, int x, int y, int width, int hight)
     {
         if(mx > x && mx < x + width)
@@ -67,11 +93,12 @@ public class Menu extends MouseAdapter
         else return false;
     }
 
-    public void tick()
-    {
+    public void tick() {}
 
-    }
-
+    /**
+     * This method draws the menu
+     * @param g is the graphics
+     */
     public void render(Graphics g)
     {
 

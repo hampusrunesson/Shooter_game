@@ -1,9 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * This class decides what things a GameObject needs to contain
+ * and sets that as a standard
+ */
 public abstract class GameObject {
 
-    //kanske ska vara protected???
+    //kanske ska vara private?
     public int x,y;
     public float velx = 0, vely = 0, tempvely = 0, tempvelx = 0;
 
@@ -12,8 +16,16 @@ public abstract class GameObject {
     private String shooterName;
     public SpriteSheet spriteS;
 
-    //
 
+    /**
+     * The constructor
+     *
+     * @param x horizontal location
+     * @param y vertical location
+     * @param id is the way to know what type a certain GameObject is
+     * @param spriteS is a picture that contains the images of the different components
+     * @param shooterName is the name of the player
+     */
     public GameObject (int x, int y, ID id, SpriteSheet spriteS, String shooterName)
     {
         this.x = x;

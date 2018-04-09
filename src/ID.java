@@ -1,4 +1,6 @@
-
+/**
+ * This enum contains all the different ID:s that a GameObject can have
+ */
 public enum ID {
 
     Player1(),

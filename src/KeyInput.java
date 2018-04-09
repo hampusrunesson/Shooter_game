@@ -1,7 +1,11 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Timer;
 
+/**
+ * This class handles all the key inputs from the players, for example
+ * moving, shooting etc.
+ *
+ */
 public class KeyInput extends KeyAdapter {
 
     private Driver driver;
@@ -9,16 +13,26 @@ public class KeyInput extends KeyAdapter {
     private int reloadTime;
     private Game game;
 
-
-    public KeyInput(Driver driver, SpriteSheet spriteS, Game game, int reloadTime)
+    /**
+     * Constructor of the class
+     *
+     * @param driver runs through all the GameObjects
+     * @param game is the game itself
+     * @param reloadTime is the cooldown time for the players guns
+     */
+    public KeyInput(Driver driver, Game game, int reloadTime)
     {
         this.driver = driver;
-        this.spriteS = spriteS;
         this.reloadTime = reloadTime;
         this.game = game;
 
     }
 
+    /**
+     * The method which do something when a key is pressed. Depending on
+     * which id the GameObject have different keys are connected to that id
+     * @param e is the occurring KeyEvent
+     */
     public void keyPressed(KeyEvent e)
     {
         int key = e.getKeyCode();
@@ -120,6 +134,11 @@ public class KeyInput extends KeyAdapter {
 
         if(key == KeyEvent.VK_ESCAPE) System.exit(1);
     }
+
+    /**
+     * This method handles the action when a key is released
+     * @param e
+     */
     public void keyReleased(KeyEvent e)
     {
         int key = e.getKeyCode();

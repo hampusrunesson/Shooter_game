@@ -1,14 +1,15 @@
-import javax.swing.*;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
+
+/**
+ * This class is the game itself, and runns the game, contains the game loop etc.
+ */
 public class Game extends Canvas implements Runnable
 {
 
@@ -37,7 +38,10 @@ public class Game extends Canvas implements Runnable
     private int reloadTime = 25, t1 = 25, t2 = 25, t3 = 25, t4 = 25;
 
 
-
+    /**
+     * The constructor of the class, initializes the driver, creates the window
+     * and starts the game.
+     */
     public STATE gamestate = STATE.Menu;
 
     public Game()
@@ -47,7 +51,7 @@ public class Game extends Canvas implements Runnable
         start();
         driver = new Driver();
         ImageLoader loader = new ImageLoader();
-        this.addKeyListener(new KeyInput(driver, spriteS, this, reloadTime));
+        this.addKeyListener(new KeyInput(driver,this, reloadTime));
         menu = new Menu(this, driver, loader);
         this.addMouseListener(menu);
         cfg = new ConfigMenu(this);
@@ -69,6 +73,9 @@ public class Game extends Canvas implements Runnable
 
     }
 
+    /**
+     * Starts a new thread to run on
+     */
     public void start()
     {
         running = true;
@@ -76,6 +83,9 @@ public class Game extends Canvas implements Runnable
         thread.start();
     }
 
+    /**
+     * Combine the thread with the main thread
+     */
     private void stop()
     {
         running = false;
@@ -86,6 +96,9 @@ public class Game extends Canvas implements Runnable
         }
     }
 
+    /**
+     * This is the loop, which makes the game run with a certain amount of cycles per second
+     */
     public void run() {
         this.requestFocus();
         long lastTime = System.nanoTime();
@@ -120,6 +133,9 @@ public class Game extends Canvas implements Runnable
         stop();
     }
 
+    /**
+     * Tick method of the game
+     */
     public void tick()
     {
         driver.tick();
@@ -154,6 +170,9 @@ public class Game extends Canvas implements Runnable
         }
     }
 
+    /**
+     * Runs the different render methods depending on which state the game is in.
+     */
     public void render()
     {
 
@@ -198,8 +217,14 @@ public class Game extends Canvas implements Runnable
 
     }
 
-    //loading map
 
+    /**
+     * This method draw blocks and creates the players depending on the colors
+     * of the picture. This method use RGB to draw or create the right thing on the
+     * right spot on the field.
+     *
+     * @param image is a drawn image of the map (PNG)
+     */
     public void loadMap(BufferedImage image)
     {
         names = cfg.getNames();
@@ -229,7 +254,7 @@ public class Game extends Canvas implements Runnable
                 }
 
                 if(green == 222) {
-                    driver.addObject(new Player(xx * 16, yy * 16, ID.Player2, driver, Color.green, spriteS, 1, names.get(1), this));
+                    driver.addObject(new Player(xx * 16, yy * 16, ID.Player2, driver, Color.PINK, spriteS, 1, names.get(1), this));
                     killResults.put(names.get(1), 0);
                     deathResults.put(names.get(1), 0);
 
@@ -289,6 +314,10 @@ public class Game extends Canvas implements Runnable
         this.t4 = t4;
     }
 
+    /**
+     * The main method of the project which only creates the game.
+     * @param args
+     */
     public static void main(String[] args)
     {
         new Game();

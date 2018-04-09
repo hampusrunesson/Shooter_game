@@ -2,8 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 
+/**
+ * This class creates the player
+ */
 public class Player extends GameObject {
 
     Driver driver;
@@ -15,7 +17,18 @@ public class Player extends GameObject {
     private Game game;
 
 
-
+    /**
+     * The contructor
+     * @param x
+     * @param y
+     * @param id
+     * @param driver
+     * @param color
+     * @param spriteS
+     * @param numberofplayers
+     * @param name
+     * @param game
+     */
     public Player(int x, int y, ID id, Driver driver, Color color, SpriteSheet spriteS, int numberofplayers, String name, Game game)
     {
         super(x, y, id, spriteS, name);
