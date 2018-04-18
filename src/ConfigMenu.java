@@ -1,73 +1,82 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * This class creates the menu where the players enter there names
  */
-public class ConfigMenu extends MouseAdapter{
+public class ConfigMenu extends JPanel{
 
-        private int nPlayers;
-        private Game game;
         public int players;
-        private Scanner input = new Scanner(System.in);
+        private ArrayList<JTextField> fields = new ArrayList<>();
         private ArrayList<String> names = new ArrayList<>();
-        private int counter = 0;
 
-    /**
-     * The constructor of the class
-     * @param game is the current game
-     */
-    public ConfigMenu(Game game)
-       {
-           this.game = game;
+        public JTextField t1;
+        private JButton button;
+        private Game game;
 
-       }
-
-    /**
-     * Locate the mouse on the frame and checks if the player want to continue
-     * @param e is the event (if the mouse is pressed)
-     */
-    public void mousePressed(MouseEvent e)
-    {
-        int mx = e.getX();
-        int my = e.getY();
-
-        if(MouseOver(mx, my, 460, 500, 100, 50))
+        public ConfigMenu(int players, Game game)
         {
-            if (names.size() == players)
-            {
-                game.gamestate = STATE.Game;
-                game.loadMap(game.map);
-            }
+            this.players = players;
+            this.game = game;
+            initTextFields();
         }
-    }
 
-    /**
-     *
-     * @param mx the current horizontal location of the mouse pointer
-     * @param my the current vertical location of the mouse pointer
-     * @param x the horizontal location where something can be pressed with the mouse pointer
-     * @param y the vertical location where something can be pressed with the mouse pointer
-     * @param width the width of the object that can be pressed
-     * @param hight the hight of the object that can be pressed
-     * @return true if the mouse is over a location that can be pressed, else it returns false
-     */
-    private boolean MouseOver(int mx, int my, int x, int y, int width, int hight) {
-        if (mx > x && mx < x + width) {
-            if (my > y && my < y + hight) {
-                return true;
-            } else return false;
-        } else return false;
-    }
 
-    /**
-     * Draws the menu
-     * @param g is the graphics
-     */
-        public void render(Graphics g) {
+        public void initTextFields()
+        {
+            setLayout(null);
+            setBounds(0,0,1010,620);
+            setBackground(Color.BLACK);
+            Font ft = new Font("Comic Sans MS", 1, 32);
+
+            for(int i = 0; i < players; i++)
+            {
+                t1 = new JTextField();
+                t1.setFont(ft);
+
+                t1.setBounds(300,200 + (i*75),200,50);
+                t1.setBackground(Color.BLACK);
+                t1.setForeground(Color.BLUE);
+                t1.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+                add(t1);
+                fields.add(t1);
+            }
+                button = new JButton("PLAY!");
+                button.setBounds(405,500, 150,50);
+                button.setFont(ft);
+                button.setBackground(Color.BLUE);
+                add(button);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for(JTextField f: fields)
+                        {
+                            if(f.getText().equals(""))
+                            {
+                                names.add("Player "+ ((fields.indexOf(f)+1)) % 10);
+                                continue;
+                            }
+                            names.add(f.getText());
+                            System.out.println(f.getText());
+                        }
+                        game.gamestate = STATE.Game;
+                        game.initializeGame();
+                    }
+                });
+
+
+
+
+
+        }
+
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
             Font ft = new Font("Comic Sans MS", 1, 50);
             Font ft2 = new Font("Comic Sans MS", 1, 32);
 
@@ -78,38 +87,11 @@ public class ConfigMenu extends MouseAdapter{
 
             //Button
             g.setFont(ft2);
-            g.setColor(Color.RED);
-            g.drawRect(460,500,100,50);
-            g.drawString("PLAY!",467,535);
 
-
-
-
-            for (int i = 0; i < players; i++) {
-                g.setColor(Color.RED);
-                g.drawString("Player " + (i + 1) + " ID:", 100, (i * 75) + 200);
-
-
-                if(names.size() > i)
-                {
-                    g.setColor(Color.BLUE);
-                    g.drawString(names.get(i), 320, (i * 75) + 200);
-
-                }
-                counter ++;
+            for(int i = 0; i < players; i++)
+            {
+                g.drawString("Player " + (i+1) + " ID:", 60, 240 + (i*75));
             }
-
-            if(counter == 2*players) {
-                for (int x = 0; x < players; x++) {
-
-                    System.out.println("Player " + (x + 1) + " type in your username :");
-                    String tempName = input.nextLine();
-                    System.out.println(tempName);
-                    names.add(tempName);
-                }
-            }
-
-
         }
 
     public ArrayList<String> getNames() {

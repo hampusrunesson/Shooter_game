@@ -10,12 +10,17 @@ public class Player extends GameObject {
 
     Driver driver;
     Color color;
-    private BufferedImage playerimage[] = new BufferedImage[3];
+    private BufferedImage playerimage[];
     public int hp = 100;
-    private int numberofplayers;
     private String name;
     private Game game;
-
+    private SpriteSheet tankImages;
+    private int images = 4;
+    private BufferedImage imageToShow;
+    private int counter;
+    private int updateFrequency = 100;
+    private int playerNumber;
+    private int coolDown;
 
     /**
      * The contructor
@@ -24,29 +29,37 @@ public class Player extends GameObject {
      * @param id
      * @param driver
      * @param color
-     * @param spriteS
-     * @param numberofplayers
+     * @param tankImages
+     * @param playerNumber
      * @param name
      * @param game
      */
-    public Player(int x, int y, ID id, Driver driver, Color color, SpriteSheet spriteS, int numberofplayers, String name, Game game)
+    public Player(int x, int y, ID id, Driver driver, Color color, SpriteSheet tankImages, int playerNumber, String name, Game game, int coolDown)
     {
-        super(x, y, id, spriteS, name);
+        super(x, y, id, tankImages, name, coolDown);
+        this.coolDown = coolDown;
         this.driver = driver;
         this.color = color;
-        this.numberofplayers = numberofplayers;
         this.name = name;
         this.game = game;
+        this.tankImages =tankImages;
+        this.playerNumber = playerNumber;
 
 
-        playerimage[0] = spriteS.grabImage(7, 1, 24, 24);
-        playerimage[1] = spriteS.grabImage(1, 1, 24, 24);
-        playerimage[2] = spriteS.grabImage(1, 1, 24, 24);
 
+        playerimage = new BufferedImage[images];
+
+        for(int i = 0; i < images; i++)
+        {
+            playerimage[i] = tankImages.grabImage(1 + i, 1+playerNumber,24,24);
+        }
+        imageToShow = playerimage[1];
     }
 
     public void tick()
     {
+
+        incCoolDown();
 
         if(velx != 0 || vely != 0)
         {
@@ -102,11 +115,25 @@ public class Player extends GameObject {
     public void render(Graphics g)
     {
         //player rendering
-        //g.drawImage(playerimage[0], x, y, null);
+        counter++;
         g.setColor(color);
-        g.fillRect(x,y,20,20);
+        g.fillRect(x,y,24,24);
 
-        int px = 15 + 260*numberofplayers;
+        if(vely != 0 || velx != 0) {
+            if (velx > 0)
+                imageToShow = playerimage[1];
+            else if (velx < 0)
+                imageToShow = playerimage[3];
+            else if (vely > 0)
+                imageToShow = playerimage[2];
+            else
+                imageToShow = playerimage[0];
+
+        }
+
+        g.drawImage(imageToShow, x, y, null);
+
+        int px = 15 + 260*playerNumber;
 
         g.setColor(Color.gray);
         g.fillRect(px, 565, 200, 32);
@@ -122,6 +149,18 @@ public class Player extends GameObject {
 
     }
 
+    private BufferedImage changeImage(int Counter, BufferedImage image1, BufferedImage image2, BufferedImage lastShownImage)
+    {
+        if(Counter > updateFrequency )
+        {
+            if(image1 == lastShownImage)
+                return image2;
+            else
+                return image1;
+        }
+        return lastShownImage;
+    }
+
 
 
     public Rectangle getBounds()
@@ -129,5 +168,5 @@ public class Player extends GameObject {
         return new Rectangle(x, y, 24, 24);
     }
 
+    }
 
-}

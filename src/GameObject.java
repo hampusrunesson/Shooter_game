@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 public abstract class GameObject {
 
     //kanske ska vara private?
-    public int x,y;
+    public int x,y, coolDown = 0;
     public float velx = 0, vely = 0, tempvely = 0, tempvelx = 0;
 
 
@@ -26,10 +26,11 @@ public abstract class GameObject {
      * @param spriteS is a picture that contains the images of the different components
      * @param shooterName is the name of the player
      */
-    public GameObject (int x, int y, ID id, SpriteSheet spriteS, String shooterName)
+    public GameObject (int x, int y, ID id, SpriteSheet spriteS, String shooterName, int coolDown)
     {
         this.x = x;
         this.y = y;
+        this.coolDown = coolDown;
         this.id = id;
         this.spriteS = spriteS;
         this.shooterName = shooterName;
@@ -97,6 +98,18 @@ public abstract class GameObject {
 
     public String getShooterName() {
         return shooterName;
+    }
+
+    public int getCoolDown() {
+        return coolDown;
+    }
+
+    public void setCoolDown(int coolDown) {
+        this.coolDown = coolDown;
+    }
+    public void incCoolDown()
+    {
+        this.coolDown++;
     }
 
     public void setShooterName(String shooterName) {

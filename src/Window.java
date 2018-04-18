@@ -7,21 +7,16 @@ public class Window {
 
     JFrame frame;
 
-    public Window(int width, int hight, String title, Game game)
+    public Window(int width, int hight, String title, Component object)
     {
         frame = new JFrame(title);
-        frame.setPreferredSize(new Dimension(width, hight));
-        frame.setMaximumSize(new Dimension(width, hight));
-        frame.setMinimumSize(new Dimension(width, hight));
 
-
-
-        frame.getContentPane().add(game);
-        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(width,hight);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
+
+        frame.add(object);
     }
 }

@@ -12,6 +12,7 @@ public class KeyInput extends KeyAdapter {
     private SpriteSheet spriteS;
     private int reloadTime;
     private Game game;
+    private int speed;
 
     /**
      * Constructor of the class
@@ -20,11 +21,12 @@ public class KeyInput extends KeyAdapter {
      * @param game is the game itself
      * @param reloadTime is the cooldown time for the players guns
      */
-    public KeyInput(Driver driver, Game game, int reloadTime)
+    public KeyInput(Driver driver, Game game, int reloadTime, int speed)
     {
         this.driver = driver;
         this.reloadTime = reloadTime;
         this.game = game;
+        this.speed = speed;
 
     }
 
@@ -47,14 +49,16 @@ public class KeyInput extends KeyAdapter {
             if(tempObject.getID() == ID.Player1)
             {//key event for player 1
 
+                tempObject.setVelx(0);
+                tempObject.setVely(0);
 
-                if(key == KeyEvent.VK_W) tempObject.setVely(-3);
-                if(key == KeyEvent.VK_S) tempObject.setVely(3);
-                if(key == KeyEvent.VK_D) tempObject.setVelx(3);
-                if(key == KeyEvent.VK_A) tempObject.setVelx(-3);
-                if(key == KeyEvent.VK_SPACE && game.getT1() > reloadTime)
+                if(key == KeyEvent.VK_W) tempObject.setVely(-speed);
+                if(key == KeyEvent.VK_S) tempObject.setVely(speed);
+                if(key == KeyEvent.VK_D) tempObject.setVelx(speed);
+                if(key == KeyEvent.VK_A) tempObject.setVelx(-speed);
+                if(key == KeyEvent.VK_SPACE && tempObject.getCoolDown() > reloadTime)
                 {
-                    game.setT1(0);
+                    tempObject.setCoolDown(0);
 
                     int bx = 5;
                     int by = 5;
@@ -69,14 +73,17 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player2)
             {//key event for player 1
-                if(key == KeyEvent.VK_UP) tempObject.setVely(-3);
-                if(key == KeyEvent.VK_DOWN) tempObject.setVely(3);
-                if(key == KeyEvent.VK_RIGHT) tempObject.setVelx(3);
-                if(key == KeyEvent.VK_LEFT) tempObject.setVelx(-3);
 
-                if(key == KeyEvent.VK_NUMPAD0 && game.getT2() > reloadTime)
+                tempObject.setVelx(0);
+                tempObject.setVely(0);
+                if(key == KeyEvent.VK_UP) tempObject.setVely(-speed);
+                if(key == KeyEvent.VK_DOWN) tempObject.setVely(speed);
+                if(key == KeyEvent.VK_RIGHT) tempObject.setVelx(speed);
+                if(key == KeyEvent.VK_LEFT) tempObject.setVelx(-speed);
+
+                if(key == KeyEvent.VK_NUMPAD0 && tempObject.getCoolDown() > reloadTime)
                 {
-                    game.setT2(0);
+                    tempObject.setCoolDown(0);
 
                     int bx = 5;
                     int by = 5;
@@ -90,13 +97,16 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player3)
             {//key event for player 1
-                if(key == KeyEvent.VK_T) tempObject.setVely(-3);
-                if(key == KeyEvent.VK_G) tempObject.setVely(3);
-                if(key == KeyEvent.VK_H) tempObject.setVelx(3);
-                if(key == KeyEvent.VK_F) tempObject.setVelx(-3);
-                if(key == KeyEvent.VK_V && game.getT3() > reloadTime)
+
+                tempObject.setVelx(0);
+                tempObject.setVely(0);
+                if(key == KeyEvent.VK_T) tempObject.setVely(-speed);
+                if(key == KeyEvent.VK_G) tempObject.setVely(speed);
+                if(key == KeyEvent.VK_H) tempObject.setVelx(speed);
+                if(key == KeyEvent.VK_F) tempObject.setVelx(-speed);
+                if(key == KeyEvent.VK_V && tempObject.getCoolDown() > reloadTime)
                 {
-                    game.setT3(0);
+                    tempObject.setCoolDown(0);
 
                     int bx = 5;
                     int by = 5;
@@ -111,13 +121,15 @@ public class KeyInput extends KeyAdapter {
 
             if(tempObject.getID() == ID.Player4)
             {//key event for player 1
-                if(key == KeyEvent.VK_I) tempObject.setVely(-3);
-                if(key == KeyEvent.VK_K) tempObject.setVely(3);
-                if(key == KeyEvent.VK_L) tempObject.setVelx(3);
-                if(key == KeyEvent.VK_J) tempObject.setVelx(-3);
-                if(key == KeyEvent.VK_N && game.getT4() > reloadTime)
+                tempObject.setVelx(0);
+                tempObject.setVely(0);
+                if(key == KeyEvent.VK_I) tempObject.setVely(-speed);
+                if(key == KeyEvent.VK_K) tempObject.setVely(speed);
+                if(key == KeyEvent.VK_L) tempObject.setVelx(speed);
+                if(key == KeyEvent.VK_J) tempObject.setVelx(-speed);
+                if(key == KeyEvent.VK_N && tempObject.getCoolDown() > reloadTime)
                 {
-                    game.setT4(0);
+                    tempObject.setCoolDown(0);
 
                     int bx = 5;
                     int by = 5;

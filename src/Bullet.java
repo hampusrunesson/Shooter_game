@@ -25,7 +25,7 @@ public class Bullet extends GameObject
      * @param shooterName the name of the player that fired the bullet
      */
     public Bullet(int x, int y, ID id, Driver driver, GameObject tempObject, SpriteSheet spriteS, float tempvelx, float tempvely,  String shooterName) {
-        super(x, y, id, spriteS, shooterName);
+        super(x, y, id, spriteS, shooterName,0);
         this.driver = driver;
         this.shooterName = shooterName;
 

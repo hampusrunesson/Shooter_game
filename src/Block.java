@@ -20,7 +20,7 @@ public class Block extends GameObject {
      * @param spriteS is the spritesheet that we load the image from
      */
     public Block(int x, int y, ID id, SpriteSheet spriteS) {
-        super(x, y, id, spriteS, null);
+        super(x, y, id, spriteS, null, 0);
 
         blockimage = spriteS.grabImage(5, 2, 20, 20);
     }
